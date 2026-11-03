@@ -81,13 +81,17 @@ class FavoritoActivity : ComponentActivity() {
                         when (newIndex) {
                             0 -> {
                                 selectedTab = 0
-                                val intent = Intent(this, InicioActivity::class.java)
+                                val intent = Intent(this, HomeActivity::class.java)
+
                                 startActivity(intent)
                             }
+
                             1 -> {
                                 selectedTab = 1
-                                val intent = Intent(this, HomeActivity::class.java)
+                                val intent = Intent(this, MenuActivity::class.java)
+
                                 startActivity(intent)
+
                             }
                             2 -> {
                                 selectedTab = 2
@@ -144,7 +148,7 @@ fun FavoritosView(
 
            Column(
                modifier = Modifier.fillMaxWidth()
-                   .padding(top = 36.dp, end = 10.dp, start = 10.dp),
+                   .padding(top = 15.dp, end = 10.dp, start = 10.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
            ) {
                CupfulCanvas()

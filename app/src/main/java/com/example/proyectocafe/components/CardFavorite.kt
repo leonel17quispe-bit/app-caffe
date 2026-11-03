@@ -30,12 +30,11 @@ fun TarjetaCafeItem(
     onAgregarClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    // Definición de colores basados en tu temática de café
-    val colorFondoTarjeta = Color(0xFFF9EFE6) // Tono crema claro de fondo
-    val colorBorde = Color(0xFFD4B59D)        // Tono marrón suave para el borde
-    val colorTextoPrincipal = Color(0xFF3E2723) // Marrón muy oscuro para títulos
-    val colorTextoSecundario = Color(0xFF795548) // Marrón medio para detalles
-    val colorBotonOrganico = Color(0xFF2C150B)  // Marrón oscuro para el botón de la derecha
+    val colorFondoTarjeta = Color(0xFFF9EFE6)
+    val colorBorde = Color(0xFFD4B59D)
+    val colorTextoPrincipal = Color(0xFF3E2723)
+    val colorTextoSecundario = Color(0xFF795548)
+    val colorBotonOrganico = Color(0xFF2C150B)
 
     Card(
         shape = RoundedCornerShape(24.dp),

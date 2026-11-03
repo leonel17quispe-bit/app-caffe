@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,9 +14,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -36,9 +34,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -50,7 +46,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.proyectocafe.components.CoffeeBottomBar
@@ -64,13 +59,12 @@ import com.example.proyectocafe.screen.categorias.itemCategoria
 import com.example.proyectocafe.screen.productos.ItemProducto
 import com.example.proyectocafe.screen.productos.ProductoUiState
 import com.example.proyectocafe.screen.productos.ProductoViewModel
-import com.example.proyectocafe.ui.theme.PacificoFontFamily
 import com.example.proyectocafe.ui.theme.PoppinsFontFamily
 import com.example.proyectocafe.ui.theme.ProyectoCafeTheme
 
 
 
-class HomeActivity : ComponentActivity() {
+class MenuActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val viewModel = ViewModelProvider(this)[ProductoViewModel::class.java]
@@ -82,10 +76,9 @@ class HomeActivity : ComponentActivity() {
             var selectedTab by remember { mutableIntStateOf(1) }
 
             ProyectoCafeTheme {
-                HomeView(
+                MenuView(
                     uiState = uiState,
                     uiStateC = uiStateC,
-                    onBackClick ={ finish() },
                     onReintentar = { viewModel.fetchCategoria() },
                     selectedTab = selectedTab,
                     onTabSelected = {
@@ -94,14 +87,14 @@ class HomeActivity : ComponentActivity() {
                         when (newIndex) {
                             0 -> {
                                 selectedTab = 0
-                                val intent = Intent(this, InicioActivity::class.java)
+                                val intent = Intent(this, HomeActivity::class.java)
 
                                 startActivity(intent)
                             }
 
                             1 -> {
                                 selectedTab = 1
-                                val intent = Intent(this, HomeActivity::class.java)
+                                val intent = Intent(this, MenuActivity::class.java)
 
                                 startActivity(intent)
 
@@ -135,10 +128,9 @@ class HomeActivity : ComponentActivity() {
     }
 }
 @Composable
-fun HomeView(
+fun MenuView(
     uiState : ProductoUiState,
     uiStateC: CategoriaUiState,
-    onBackClick: () -> Unit,
     onReintentar: () -> Unit,
     selectedTab: Int,
     onTabSelected : (Int) -> Unit
@@ -158,14 +150,14 @@ fun HomeView(
         ) {
             fondo(
                 painterResource(R.drawable.fondo_marca_agua),
-                    "marca de agua",
+                    "fondo",
                 ContentScale.Crop
             )
 
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 35.dp, start = 10.dp, end = 10.dp),
+                    .padding(top = 15.dp, start = 10.dp, end = 10.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
 
@@ -206,7 +198,6 @@ fun HomeView(
                     modifier = Modifier.align(Alignment.Start)
                 )
 
-
                     Box(Modifier.padding(10.dp)) {
                         when(uiStateC) {
                             CategoriaUiState.Loading -> CircularProgressIndicator(
@@ -223,7 +214,7 @@ fun HomeView(
                                 Text("No se pudieron cargar las categorias", style = MaterialTheme.typography.titleMedium)
                                 FilledTonalButton(onClick = onReintentar) { Text("Reintentar") }
                             }
-                            is CategoriaUiState.Success -> ListaCategorias(uiStateC.categorias)
+                            is CategoriaUiState.Success -> ListaCategorias(uiStateC.categorias )
                         }
                     }
 
@@ -242,7 +233,7 @@ fun HomeView(
                             .padding(20.dp),
                             horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(Icons.Outlined.Business, contentDescription = null,
-                                modifier = Modifier.fillMaxSize(),
+                                modifier = Modifier.size(48.dp),
                                 tint = MaterialTheme.colorScheme.tertiary)
                             Text("No se pudieron cargar las oficinas", style = MaterialTheme.typography.titleMedium)
                             FilledTonalButton(onClick = onReintentar) { Text("Reintentar") }
@@ -250,15 +241,6 @@ fun HomeView(
                         is ProductoUiState.Success -> ListaProductos(uiState.productos)
                     }
                 }
-
-
-
-
-
-
-
-
-
             }
 
         }

@@ -34,6 +34,8 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -44,6 +46,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.proyectocafe.models.User
 import com.example.proyectocafe.ui.theme.PoppinsFontFamily
 import com.example.proyectocafe.ui.theme.ProyectoCafeTheme
 
@@ -55,6 +58,9 @@ class RegistroActivity : ComponentActivity() {
             ProyectoCafeTheme {
                 RegistroView(
                     onHomeView = {
+
+
+
                         startActivity(Intent(this, LoginActivity::class.java))
                     },
                     onLoginView = {
@@ -69,12 +75,11 @@ class RegistroActivity : ComponentActivity() {
 @Composable
 fun RegistroView(
     onHomeView: () -> Unit,
-    onLoginView: () -> Unit
+    onLoginView: () -> Unit,
 ) {
     // Definición de colores elegantes para la paleta de café
     val cafeOscuro = Color(0xFF220C02)
     val marronCalido = Color(0xFF8B5742)
-    val beigeClaro = Color(0xFFE3C9AD)
 
     Box(
         modifier = Modifier

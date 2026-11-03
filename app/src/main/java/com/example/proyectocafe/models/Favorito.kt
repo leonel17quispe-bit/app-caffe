@@ -1,4 +1,9 @@
 package com.example.proyectocafe.models
 
-class Favorito {
-}
+data class Favorito (
+    val idFavorito: Int,
+    val idUser: User,
+    val idProducto: Producto,
+
+
+)

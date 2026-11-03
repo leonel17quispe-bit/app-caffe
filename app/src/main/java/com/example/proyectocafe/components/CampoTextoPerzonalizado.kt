@@ -18,12 +18,12 @@ import com.example.proyectocafe.R
 
 @Composable
 fun CampoTextoPersonalizado(
-    value: String,                          // El texto actual que contiene el campo
-    onValueChange: (String) -> Unit,        // Función que se ejecuta cuando el usuario escribe
-    placeholderText: String,                // El texto de guía (placeholder)
-    leadingIcon: ImageVector,               // El icono que va al inicio
-    keyboardType: KeyboardType = KeyboardType.Text, // Tipo de teclado por defecto
-    modifier: Modifier = Modifier           // Modificador para ajustar márgenes o tamaño desde afuera
+    value: String,
+    onValueChange: (String) -> Unit,
+    placeholderText: String,
+    leadingIcon: ImageVector,
+    keyboardType: KeyboardType = KeyboardType.Text,
+    modifier: Modifier = Modifier
 ) {
     OutlinedTextField(
         value = value,
@@ -33,7 +33,7 @@ fun CampoTextoPersonalizado(
             Icon(
                 imageVector = leadingIcon,
                 contentDescription = null,
-                tint = colorResource(R.color.cafe_medio) // Asegúrate de tener definida esta variable de color en tu proyecto
+                tint = colorResource(R.color.cafe_medio)
             )
         },
         singleLine = true,
@@ -41,7 +41,7 @@ fun CampoTextoPersonalizado(
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = colorResource(R.color.cafe_medio),
-            unfocusedBorderColor = colorResource(R.color.cafe_oscuro_principal).copy(alpha = 0.4f), // Asegúrate de tener este color
+            unfocusedBorderColor = colorResource(R.color.cafe_oscuro_principal).copy(alpha = 0.4f),
             focusedContainerColor = Color.White.copy(alpha = 0.85f),
             unfocusedContainerColor = Color.White.copy(alpha = 0.75f),
         ),

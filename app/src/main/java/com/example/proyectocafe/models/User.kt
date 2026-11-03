@@ -1,4 +1,7 @@
 package com.example.proyectocafe.models
 
-class User {
-}
+data class User (
+
+    val correo : String,
+    val password :String
+)

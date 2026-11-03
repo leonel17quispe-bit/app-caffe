@@ -5,8 +5,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,27 +19,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemDefaults.colors
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -52,16 +40,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.proyectocafe.components.CoffeeBottomBar
@@ -70,16 +54,14 @@ import com.example.proyectocafe.components.CupfulCanvas
 import com.example.proyectocafe.components.TarjetaCafeItem
 import com.example.proyectocafe.components.fondo
 import com.example.proyectocafe.models.Producto
-import com.example.proyectocafe.screen.categorias.itemCategoria
-import com.example.proyectocafe.screen.productos.ItemProducto
 import com.example.proyectocafe.screen.productos.ItemProductoHome
 import com.example.proyectocafe.screen.productos.ProductoUiState
 import com.example.proyectocafe.screen.productos.ProductoViewModel
-import com.example.proyectocafe.ui.theme.PacificoFontFamily
 import com.example.proyectocafe.ui.theme.PoppinsFontFamily
 import com.example.proyectocafe.ui.theme.ProyectoCafeTheme
+import kotlin.jvm.java
 
-class InicioActivity : ComponentActivity() {
+class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val viewModel = ViewModelProvider(this)[ProductoViewModel::class.java]
@@ -96,12 +78,12 @@ class InicioActivity : ComponentActivity() {
                             when (newIndex) {
                                 0 -> {
                                     selectedTab = 0
-                                    val intent = Intent(this, InicioActivity::class.java)
+                                    val intent = Intent(this, HomeActivity::class.java)
                                     startActivity(intent)
                                 }
                                 1 -> {
                                     selectedTab = 1
-                                    val intent = Intent(this, HomeActivity::class.java)
+                                    val intent = Intent(this, MenuActivity::class.java)
                                     startActivity(intent)
                                 }
                                 2 -> {
@@ -158,7 +140,7 @@ fun homeView(
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
                     .navigationBarsPadding()
-                    .padding(top = 35.dp, start = 10.dp, end = 10.dp, bottom = 20.dp),
+                    .padding(top = 15.dp, start = 10.dp, end = 10.dp, bottom = 20.dp),
                 verticalArrangement = Arrangement.Top, // Cambiado a Top para que fluya correctamente
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {

@@ -32,14 +32,13 @@ fun CoffeeCarousel(
 
 
 ) {
-    // Lista de recursos de imágenes para el carrusel (puedes agregar más)
     val banners = listOf(
-        R.drawable.fondo1_1, // Reemplaza con tus imágenes de banner
+        R.drawable.fondo1_1,
         R.drawable.fondo1_2,
         R.drawable.fondo1_3
     )
 
-    // Estado del Pager para saber qué página está activa
+
     val pagerState = rememberPagerState(pageCount = { banners.size })
 
     Column(

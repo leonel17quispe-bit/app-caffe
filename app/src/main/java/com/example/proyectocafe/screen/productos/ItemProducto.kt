@@ -113,19 +113,11 @@ fun ItemProducto(producto : Producto,
                         .padding(4.dp)
                         .size(32.dp)
                 ) {
-                    if (isFavorite){
-                        Icon(
-                            imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
-                            contentDescription = "Favorito",
-                            tint = Color.Red // Cambia el color a rojo si es favorito
-                        )
-                    }else{
-                        Icon(
-                            imageVector = if (isFavorite) Icons.Outlined.FavoriteBorder else Icons.Outlined.FavoriteBorder,
-                            contentDescription = "Favorito",
-                            tint =  Color.Black // Cambia el color a rojo si es favorito
-                        )
-                    }
+                    Icon(
+                        imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
+                        contentDescription = "Favorito",
+                        tint = if (isFavorite) Color.Red else Color.Black
+                    )
                 }
             }
 

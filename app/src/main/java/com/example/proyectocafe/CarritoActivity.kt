@@ -66,30 +66,30 @@ import com.example.proyectocafe.ui.theme.ProyectoCafeTheme
 class CarritoActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewModel = ViewModelProvider(this)[ProductoViewModel::class.java]
-        val viewModelCategoria = ViewModelProvider(this)[CategoriaViewModel::class.java]
+       // val viewModel = ViewModelProvider(this)[ProductoViewModel::class.java]
+        //val viewModelCategoria = ViewModelProvider(this)[CategoriaViewModel::class.java]
         enableEdgeToEdge()
         setContent {
-            val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-            val uiStateC by viewModelCategoria.uiStateC.collectAsStateWithLifecycle()
+            //val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+            ///val uiStateC by viewModelCategoria.uiStateC.collectAsStateWithLifecycle()
             var selectedTab by remember { mutableIntStateOf(3) }
 
             ProyectoCafeTheme {
                 CarritoView(
-                    uiState = uiState,
-                    uiStateC = uiStateC,
-                    onReintentar = { viewModel.fetchCategoria() },
+                    //uiState = uiState,
+                    //uiStateC = uiStateC,
+                    //onReintentar = { viewModel.fetchCategoria() },
                     selectedTab = selectedTab,
                     onTabSelected = { newIndex ->
                         when (newIndex) {
                             0 -> {
                                 selectedTab = 0
-                                val intent = Intent(this, InicioActivity::class.java)
+                                val intent = Intent(this, HomeActivity::class.java)
                                 startActivity(intent)
                             }
                             1 -> {
                                 selectedTab = 1
-                                val intent = Intent(this, HomeActivity::class.java)
+                                val intent = Intent(this, MenuActivity::class.java)
                                 startActivity(intent)
                             }
                             2 -> {
@@ -117,9 +117,9 @@ class CarritoActivity : ComponentActivity() {
 
 @Composable
 fun CarritoView(
-    uiState : ProductoUiState,
-    uiStateC: CategoriaUiState,
-    onReintentar: () -> Unit,
+    //uiState : ProductoUiState,
+    //uiStateC: CategoriaUiState,
+    //onReintentar: () -> Unit,
     selectedTab: Int,
     onTabSelected : (Int) -> Unit
 ){
@@ -142,7 +142,7 @@ fun CarritoView(
                ContentScale.Crop
            )
             Column(
-                modifier = Modifier.padding(top = 36.dp , start = 10.dp, end = 10.dp),
+                modifier = Modifier.padding(top = 15.dp , start = 10.dp, end = 10.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 

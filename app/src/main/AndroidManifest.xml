@@ -38,7 +38,7 @@
             android:theme="@style/Theme.ProyectoCafe"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".InicioActivity"
+            android:name=".MenuActivity"
             android:exported="false"
             android:label="@string/title_activity_inicio"
             android:theme="@style/Theme.ProyectoCafe"
@@ -47,12 +47,6 @@
             android:name=".RegistroActivity"
             android:exported="false"
             android:label="@string/title_activity_registro"
-            android:theme="@style/Theme.ProyectoCafe"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".DetalleProductoActivity"
-            android:exported="false"
-            android:label="@string/title_activity_detalle_producto"
             android:theme="@style/Theme.ProyectoCafe"
             android:windowSoftInputMode="adjustResize" />
         <activity

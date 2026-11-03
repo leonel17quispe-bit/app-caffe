@@ -37,6 +37,10 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -58,10 +62,18 @@ class LoginActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            var email by remember { mutableStateOf("") }
+            var pass by remember { mutableStateOf("") }
             ProyectoCafeTheme {
                LoginView(
+                   correo = email,
+                   pass = pass,
                    onHomeView = {
-                       startActivity(Intent(this, InicioActivity::class.java))
+
+                       if (true) {
+
+                           startActivity(Intent(this, HomeActivity::class.java))
+                       }
                    },
                    onRegistroView = {
                        startActivity(Intent(this, RegistroActivity::class.java))
@@ -75,7 +87,9 @@ class LoginActivity : ComponentActivity() {
 @Composable
 fun LoginView(
     onHomeView: () -> Unit,
-    onRegistroView : () -> Unit
+    onRegistroView : () -> Unit,
+    correo :String,
+    pass: String
 ) {
 
 
@@ -112,21 +126,21 @@ fun LoginView(
             )
 
             // Campo de Correo Electrónico (OutlinedTextField estilizado)
-           CampoTextoPersonalizado("",
+           CampoTextoPersonalizado(correo,
                {},
                stringResource(R.string.enter_email),
                Icons.Filled.Email,
-
+                keyboardType = KeyboardType.Email
                )
 
             Spacer(modifier = Modifier.height(16.dp))
 
             // Campo de Contraseña
-            CampoTextoPersonalizado("",
+            CampoTextoPersonalizado(pass,
                 {},
                 stringResource(R.string.enter_password),
                 Icons.Filled.Lock,
-
+                keyboardType = KeyboardType.Password
                 )
 
             Spacer(modifier = Modifier.height(8.dp))

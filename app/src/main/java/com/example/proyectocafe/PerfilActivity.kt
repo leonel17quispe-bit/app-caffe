@@ -70,29 +70,23 @@ import com.example.proyectocafe.ui.theme.ProyectoCafeTheme
 class PerfilActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewModel = ViewModelProvider(this)[ProductoViewModel::class.java]
-        val viewModelCategoria = ViewModelProvider(this)[CategoriaViewModel::class.java]
         enableEdgeToEdge()
         setContent {
-            val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-            val uiStateC by viewModelCategoria.uiStateC.collectAsStateWithLifecycle()
             var selectedTab by remember { mutableIntStateOf(4) }
             ProyectoCafeTheme {
                 PerfilView(
-                    uiState = uiState,
-                    uiStateC = uiStateC,
-                    onReintentar = { viewModel.fetchCategoria() },
+
                     selectedTab = selectedTab,
                     onTabSelected = { newIndex ->
                         when (newIndex) {
                             0 -> {
                                 selectedTab = 0
-                                val intent = Intent(this, InicioActivity::class.java)
+                                val intent = Intent(this, HomeActivity::class.java)
                                 startActivity(intent)
                             }
                             1 -> {
                                 selectedTab = 1
-                                val intent = Intent(this, HomeActivity::class.java)
+                                val intent = Intent(this, MenuActivity::class.java)
                                 startActivity(intent)
                             }
                             2 -> {
@@ -123,9 +117,7 @@ class PerfilActivity : ComponentActivity() {
 
 @Composable
 fun PerfilView(
-    uiState : ProductoUiState,
-    uiStateC: CategoriaUiState,
-    onReintentar: () -> Unit,
+
     selectedTab: Int,
     onTabSelected : (Int) -> Unit
 
@@ -150,7 +142,7 @@ fun PerfilView(
         }
         Column(
             modifier = Modifier.fillMaxWidth()
-                .padding(top = 100.dp , start = 10.dp, end = 10.dp),
+                .padding(top = 75.dp , start = 10.dp, end = 10.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             CupfulCanvas(
@@ -169,7 +161,7 @@ fun PerfilView(
                 )
             }
             Row(
-                modifier = Modifier.height(150.dp),
+                modifier = Modifier.height(150.dp).fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start
             ) {
